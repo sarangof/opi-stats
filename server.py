@@ -8,15 +8,18 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 
 app = Flask(__name__)
-app.config.from_object(__name__)
-app.config.from_envvar('APP_CONFIG_FILE', silent=True)
+#app.config.from_object(__name__)
+#app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 
-MAPBOX_ACCESS_KEY = app.config['MAPBOX_ACCESS_KEY']
+#MAPBOX_ACCESS_KEY = app.config['MAPBOX_ACCESS_KEY']
 
 # Mapbox driving direction API call
 ROUTE_URL = "https://api.mapbox.com/directions/v5/mapbox/driving/{0}.json?access_token={1}&overview=full&geometries=geojson"
 ALLOWED_EXTENSIONS = set(['csv','xlsx','xlx'])
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+MAPBOX_ACCESS_KEY='pk.eyJ1Ijoic2FyYW5nb2YiLCJhIjoiY2pya3FzMTVsMDBtdTQzcGw5N2xkbXR6aCJ9.PuHyaN2w1BkaO5SCVoHPJQ'
+#APP_CONFIG_FILE=settings.py
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -90,3 +93,5 @@ def mapbox_js():
                             av_lat = av_lat,
                             av_long = av_long
                             )
+
+app.run(host='0.0.0.0', port=4500)
