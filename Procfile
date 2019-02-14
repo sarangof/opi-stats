@@ -1,1 +1,1 @@
-web: gunicorn opi-stats:start.sh
+web: gunicorn start.sh:opi-stats
