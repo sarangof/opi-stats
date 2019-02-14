@@ -8,10 +8,14 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 
 app = Flask(__name__)
-app.config.from_object(__name__)
-app.config.from_envvar('APP_CONFIG_FILE', silent=True)
+#app.config.from_object(__name__)
+#app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 
-MAPBOX_ACCESS_KEY = app.config['MAPBOX_ACCESS_KEY']
+#export FLASK_APP=server.py
+#export FLASK_DEBUG=1
+#export APP_CONFIG_FILE=settings.py
+
+app.config['MAPBOX_ACCESS_KEY']='pk.eyJ1Ijoic2FyYW5nb2YiLCJhIjoiY2pya3FzMTVsMDBtdTQzcGw5N2xkbXR6aCJ9.PuHyaN2w1BkaO5SCVoHPJQ'#app.config['MAPBOX_ACCESS_KEY']
 
 # Mapbox driving direction API call
 ROUTE_URL = "https://api.mapbox.com/directions/v5/mapbox/driving/{0}.json?access_token={1}&overview=full&geometries=geojson"
