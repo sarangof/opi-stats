@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=yes' />
+        <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+        <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <style>
+            body            { font-family: sans-serif; background: #2F3C72; }
+            /*a, h1, h2       { color: #ffffff ; font-family: 'Roboto'}*/
+            h1, h2, h3      { font-family: 'Roboto', margin: 1;  color: #ffffff }
+            div             { font-family: 'Roboto', margin: 1;  color: #ffffff }
+            body            {
+                                padding-top: 50px;
+                                padding-right: 30px;
+                                padding-bottom: 50px;
+                                padding-left: 80px;
+                            }
+
+            #checkboxes_cols {
+                            color:#ffffff;   
+                            padding-left: 100px;
+            }
+
+            #radios_Type {
+                            color:#ffffff;   
+                            padding-right: 60px;
+            }
+            body { margin:20; padding:20; }
+            #map { width: 70%; height: 700px; 
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                margin-left: 35px;
+                margin-right: 35px;
+            }
+
+            #data_inputs_div {
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                margin:5px;
+                width: 25%
+            }
+        </style>
+    </head>
+    <body>
+        <h1 >OPI-STATS</h1>>
+        <div id="map"></div>
+
+        <div id="data_inputs_div">
+
+        Please input Calls for Service and Service Centers data. 
+        Please refer to: () to read about data requirements.
+
+        <br>
+        </br>
+        <form action="{{url_for('mapbox_js')}}" method = 'POST' enctype=multipart/form-data>
+          Service centers:
+          <input type=file name=file_SC value='Service centers'>
+          <br>
+          </br>
+          Calls for service:
+          <input type=file name=file_CFS value='Calls for service'>
+          <input type=submit value=Upload>
+        </form>
+        </div>
+
+        <script>
+            L.mapbox.accessToken = '{{ACCESS_KEY}}';
+
+            var map = L.mapbox.map('map', 'mapbox.streets', {
+              scrollWheelZoom: false,
+              zoomControl: true
+            //}).setView([65.0,-18.73], 7);
+            }).setView([{{av_lat}}, {{av_long}}], 10);
+
+            L.mapbox.featureLayer({{all_locations|safe}}).addTo(map);
+        </script>
+    </body>
+</html>
