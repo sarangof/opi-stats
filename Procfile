@@ -1,1 +1,1 @@
-web: gunicorn server.py:opi-stats
+web: gunicorn server:opi-stats
