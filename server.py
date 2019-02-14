@@ -94,4 +94,5 @@ def mapbox_js():
                             av_long = av_long
                             )
 
-app.run(host='0.0.0.0', port=4500)
+#app.run(host='0.0.0.0', port=4500)
+app.run()
